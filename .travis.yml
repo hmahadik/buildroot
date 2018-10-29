@@ -19,7 +19,7 @@ script:
 - while true ; sleep 60; do echo "Still building" ; done &
 - stupidpid=$!
 - echo 'Build buildroot'
-- make > >(tee build.log |grep '>>>') 2>&1
+- travis_wait 30 make > >(tee build.log |grep '>>>') 2>&1
 - kill ${stupidpid}
 - echo 'Display end of log'
 - tail -1000 build.log
