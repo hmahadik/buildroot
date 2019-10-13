@@ -13,11 +13,10 @@ script:
 - git clone https://github.com/hmahadik/buildroot
 - cd buildroot
 - make ${DEFCONFIG_NAME}
-- while true ; sleep 60; do echo "Still building" ; done &
-- stupidpid=$!
-- echo 'Build buildroot'
-- travis_wait 120 make > >(tee build.log |grep '>>>') 2>&1
-- kill ${stupidpid}
+- echo 'Build'
+- while sleep 1m; do echo "=====[ $SECONDS seconds still running ]====="; done &
+- make
+- kill $1
 - echo 'Display end of log'
 - tail -1000 build.log
 - ls -lash output/images
