@@ -15,8 +15,8 @@ script:
 - make ${DEFCONFIG_NAME}
 - echo 'Build'
 - while sleep 1m; do echo "=====[ $SECONDS seconds still running ]====="; done &
-- make 2&>1 /dev/null
-- kill $1
+- make > /dev/null
+- kill %1
 - echo 'Display end of log'
 - tail -1000 build.log
 - ls -lash output/images
